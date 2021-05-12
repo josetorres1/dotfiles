@@ -48,8 +48,9 @@ brew install git  ripgrep imagemagick bash-completion watchman tree bat nvm zsh-
 
 
 
-echo 'export NVM_DIR="$HOME/.nvm \"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm \
+echo 'export NVM_DIR="$HOME/.nvm"
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
+[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> ~/.zshrc
 
 
