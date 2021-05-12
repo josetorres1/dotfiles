@@ -65,14 +65,18 @@ echo "installing a few global npm packages"
 npm install --global gatsby-cli expo-cli yarn
 
 echo "installing apps with brew cask"
-brew cask install alfred google-chrome firefox brave-browser \
-adoptopenjdk8		discord			notion			telegram		zoom \
+brew install alfred google-chrome firefox brave-browser \
+discord			notion			telegram		zoom \
 android-studio		docker			openwebstart		the-unarchiver \
 anydesk			forticlient		postman			visual-studio-code \
 brave-browser		iterm2			slack			vlc \
 dbeaver-community	microsoft-teams		spotify			whatsapp  dash \
 marshallofsound-google-play-music-player screenflow skype rocket \
-obs lastpass
+obs lastpass nordvpn-teams
+
+echo "brew AdoptOpenJDK/openjdk"
+brew tap AdoptOpenJDK/openjdk
+brew install --cask adoptopenjdk8
 
 echo "Generating an RSA token for GitHub"
 mkdir -p ~/.ssh
@@ -85,3 +89,4 @@ ssh-keygen -t ed25519 -C "jose.torres95@outlook.com"
 echo "Host gitlab.com\n  HostName gitlab.com\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_ed25519_gitlab\n  IdentitiesOnly yes" | tee -a ~/.ssh/config
 eval "$(ssh-agent -s)"
 cat ~/.ssh/id_ed25519_gitlab.pub
+
