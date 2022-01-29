@@ -68,7 +68,7 @@ echo "installing apps with brew cask"
 brew install alfred google-chrome firefox brave-browser \
 discord			notion			telegram		zoom \
 android-studio		docker			openwebstart		the-unarchiver \
-anydesk			forticlient		postman			visual-studio-code \
+anydesk			nordlayer		postman			visual-studio-code \
 brave-browser		iterm2			slack			vlc \
 dbeaver-community	microsoft-teams		spotify			whatsapp  dash \
 marshallofsound-google-play-music-player screenflow skype rocket \
