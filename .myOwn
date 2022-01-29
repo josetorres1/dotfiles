@@ -72,7 +72,7 @@ anydesk			forticlient		postman			visual-studio-code \
 brave-browser		iterm2			slack			vlc \
 dbeaver-community	microsoft-teams		spotify			whatsapp  dash \
 marshallofsound-google-play-music-player screenflow skype rocket \
-obs lastpass nordvpn-teams
+obs lastpass nordvpn-teams todoist microsoft-word microsoft-excel
 
 echo "brew AdoptOpenJDK/openjdk"
 brew tap AdoptOpenJDK/openjdk
