@@ -84,3 +84,12 @@ echo "Host gitlab.com\n  HostName gitlab.com\n AddKeysToAgent yes\n UseKeychain 
 eval "$(ssh-agent -s)"
 cat ~/.ssh/id_ed25519_gitlab.pub
 
+ssh-keygen -t ed25519 -C "jose@shufflespace.ca"
+echo "Host bitbucket.org\n  HostName bitbucket.org\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_ed25519_bitbucket\n  IdentitiesOnly yes" | tee -a ~/.ssh/config
+eval "$(ssh-agent -s)"
+cat ~/.ssh/id_ed25519_bitbucket.pub
+
+ssh-keygen -t ed25519 -C "jose@piefi.io"
+echo "Host piefi.github.com\n  HostName github.com\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_ed25519_piefi\n  IdentitiesOnly yes" | tee -a ~/.ssh/config
+eval "$(ssh-agent -s)"
+cat ~/.ssh/id_ed25519_piefi.pub
