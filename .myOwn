@@ -65,18 +65,12 @@ echo "installing a few global npm packages"
 npm install --global gatsby-cli expo-cli yarn
 
 echo "installing apps with brew cask"
-brew install alfred google-chrome firefox brave-browser \
-discord			notion			telegram		zoom \
-android-studio		docker			openwebstart		the-unarchiver \
-anydesk			nordlayer		postman			visual-studio-code \
-brave-browser		iterm2			slack			vlc \
-dbeaver-community	microsoft-teams		spotify			whatsapp  dash \
-marshallofsound-google-play-music-player screenflow skype rocket \
-obs lastpass nordvpn-teams todoist microsoft-word microsoft-excel
 
-echo "brew AdoptOpenJDK/openjdk"
-brew tap AdoptOpenJDK/openjdk
-brew install --cask adoptopenjdk8
+brew install alfred android-studio anydesk bitwarden brave-browser centered cyberduck \
+dash dbeaver-community discord docker firefox google-chrome istat-menus iterm2 lastpass \
+microsoft-auto-update microsoft-excel microsoft-teams microsoft-word nordlayer notion obs \
+postman rectangle rocket screenflow skype slack spotify sublime-text telegram the-unarchiver \
+todoist visual-studio-code vlc whatsapp zoom
 
 echo "Generating an RSA token for GitHub"
 mkdir -p ~/.ssh
