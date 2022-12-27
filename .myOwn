@@ -56,7 +56,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> 
 
 echo "installing node (via NVM)"
 source ~/.zshrc
-nvm install 10.22.0
+nvm install --lts
 
 echo "node --version: $(node --version)"
 echo "npm --version: $(npm --version)"
@@ -66,11 +66,17 @@ npm install --global gatsby-cli expo-cli yarn
 
 echo "installing apps with brew cask"
 
-brew install alfred android-studio anydesk bitwarden brave-browser centered cyberduck \
-dash dbeaver-community discord docker firefox google-chrome istat-menus iterm2 lastpass \
-microsoft-auto-update microsoft-excel microsoft-teams microsoft-word nordlayer notion obs \
-postman rectangle rocket screenflow skype slack spotify sublime-text telegram the-unarchiver \
-todoist visual-studio-code vlc whatsapp zoom
+brew install  alfred			firefox			rocket \
+android-studio		google-chrome		runjs \
+bitwarden		istat-menus		slack \
+brave-browser		iterm2			spotify \
+centered		microsoft-excel		sublime-text \
+cyberduck		microsoft-teams		telegram \
+dash			microsoft-word		todoist \
+dbeaver-community	notion			visual-studio-code \
+discord			obs			whatsapp \
+docker			postman			zoom \
+figma			rectangle
 
 echo "Generating an RSA token for GitHub"
 mkdir -p ~/.ssh
@@ -88,8 +94,3 @@ ssh-keygen -t ed25519 -C "jose@shufflespace.ca"
 echo "Host bitbucket.org\n  HostName bitbucket.org\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_ed25519_bitbucket\n  IdentitiesOnly yes" | tee -a ~/.ssh/config
 eval "$(ssh-agent -s)"
 cat ~/.ssh/id_ed25519_bitbucket.pub
-
-ssh-keygen -t ed25519 -C "jose@piefi.io"
-echo "Host piefi.github.com\n  HostName github.com\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_ed25519_piefi\n  IdentitiesOnly yes" | tee -a ~/.ssh/config
-eval "$(ssh-agent -s)"
-cat ~/.ssh/id_ed25519_piefi.pub
