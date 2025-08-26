@@ -21,8 +21,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 echo "Hello $(whoami)! Let's get you set up."
 
-echo "mkdir -p $(HOME)/code"
-mkdir -p "$(HOME)/code"
+echo "mkdir -p ${HOME}/code"
+mkdir -p "${HOME}/code"
 
 echo "installing homebrew"
 # install homebrew https://brew.sh
@@ -36,9 +36,11 @@ echo "brew installing stuff"
 # ffmpeg: eventually I'll need this for something
 # tree: really handy for listing out directories in text
 # bat: A cat(1) clone with syntax highlighting and Git integration.
-brew install git hub libdvdcss ripgrep imagemagick bash-completion watchman tree bat
-# yarn: without node because we'll get it from installing n later
-brew install yarn --without-node
+# delta: A fantastic diff tool
+# switchaudio-osx: allows me to switch the audio device via the command line
+# pgcli: postgres CLI
+brew install git hub libdvdcss ripgrep imagemagick watchman tree bat \
+delta switchaudio-osx pgcli
 
 echo "installing node (via n-install)"
 curl -L https://git.io/n-install | bash
@@ -47,30 +49,39 @@ echo "node --version: $(node --version)"
 echo "npm --version: $(npm --version)"
 
 echo "installing a few global npm packages"
-npm install --global serve diff-so-fancy fkill-cli npm-quick-run semantic-release-cli
+npm install --global serve fkill-cli npm-quick-run \
+semantic-release-cli npm-check-updates
 
-echo "installing apps with brew cask"
-brew cask install alfred google-chrome firefox brave-browser bettertouchtool divvy \
-bartender google-drive-file-stream itsycal visual-studio-code 1password dash \
-screenflow marshallofsound-google-play-music-player virtualbox skype rocket \
-sublime-text vlc discord obs handbrake zoomus betterzip avibrazil-rdm sip \
+echo "installing apps with brew --cask"
+brew install --cask alfred google-chrome firefox brave-browser bettertouchtool divvy \
+bartender itsycal visual-studio-code 1password dash screenflow skype workflowy \
+sublime-text vlc discord obs handbrake zoom betterzip avibrazil-rdm sip \
 qlcolorcode qlmarkdown qlstephen quicklook-json webpquicklook \
-suspicious-package qlvideo
+suspicious-package qlvideo spotify focus dropbox front qmoji slack
 
 echo "Generating an RSA token for GitHub"
 mkdir -p ~/.ssh
-ssh-keygen -t rsa -b 4096 -C "kent@doddsfamily.us"
+touch ~/.ssh/config
+ssh-keygen -t rsa -b 4096 -C "me+github@kentcdodds.com"
 echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_rsa" | tee ~/.ssh/config
 eval "$(ssh-agent -s)"
 echo "run 'pbcopy < ~/.ssh/id_rsa.pub' and paste that into GitHub"
 
 echo "cloning dotfiles"
 git clone git@github.com:kentcdodds/dotfiles.git "${HOME}/dotfiles"
-ln -s "${HOME}/dotfiles/.bash_profile" "${HOME}/.bash_profile"
+ln -s "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
 ln -s "${HOME}/dotfiles/.gitignore_global" "${HOME}/.gitignore_global"
+ln -s "${HOME}/dotfiles/.gitconfig" "${HOME}/.gitconfig"
 ln -s "${HOME}/dotfiles/.my_bin" "${HOME}/.my_bin"
 ln -s "${HOME}/dotfiles/.vimrc" "${HOME}/.vimrc"
 ln -s "${HOME}/dotfiles/.vimrc-parts" "${HOME}/.vimrc-parts"
+ln -s "${HOME}/dotfiles/.ripgreprc" "${HOME}/.ripgreprc"
+
+# get bat and delta all configured
+mkdir -p "${HOME}/.config/bat/themes"
+ln -s "${HOME}/dotfiles/.config/bat/config" "${HOME}/.config/bat/config"
+git clone https://github.com/batpigandme/night-owlish "${HOME}/.config/bat/themes/night-owlish"
+bat cache --build
 
 echo "making system modifications:"
 
@@ -213,6 +224,10 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# enable three finger drag on trackpad
+defaults write http://com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 1
+defaults write http://com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1
 
 # Trackpad: map bottom right corner to right-click
 # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
@@ -869,7 +884,9 @@ echo "Done. Note that some of these changes require a logout/restart to take eff
 printf "TODO:\n\
 install: \n\
   battery indicator (App Store) \n\
-  Euclid (App Store) \n\
+  Gifski (App Store) \n\
+  Runcat (App Store) \n\
+  Todoist (App Store) \n\
   Webcam Settings (App Store) \n\
   Audacity (https://www.audacityteam.org/download/) \n\
 \n\
