@@ -118,7 +118,6 @@ SCARF_ANALYTICS=false
 
 # Custom Aliases
 # VS Code not used - removed code aliases
-# alias ll="ls -1a"; # Overridden by eza below if available
 alias ..="cd ../";
 alias ..l="cd ../ && ll";
 alias pg="echo 'Pinging Google' && ping www.google.com";
@@ -142,14 +141,13 @@ alias zj="zellij" # Quick zellij alias
 alias zja="zellij attach" # Attach to session
 alias zjl="zellij list-sessions" # List sessions
 
+# Zellij auto-start
+eval "$(zellij setup --generate-auto-start zsh)"
+
 ## git aliases
 function gc { git commit -m "$@"; }
-alias gs="git status";
-alias gp="git pull";
-alias gf="git fetch";
-alias gpush="git push";
-alias gd="git diff";
-alias ga="git add .";
+# Note: gs, gp, gf, gd, ga are provided by Oh My Zsh git plugin
+alias gpush="git push"; # More explicit than Oh My Zsh 'gp'
 dif() { git diff --color --no-index "$1" "$2" | diff-so-fancy; }
 cdiff() { nvim -d "$1" "$2"; } # Compare files with neovim
 

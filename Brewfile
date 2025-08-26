@@ -80,7 +80,7 @@ cask "spotify"                # Music streaming
 cask "warp"                   # AI terminal
 cask "whatsapp"               # Messaging
 cask "zoom"                   # Video conferencing
-
+cask "dbeaver-community"
 # Additional useful applications (not currently installed)
 # cask "visual-studio-code"     # Code editor
 # cask "iterm2"                 # Better terminal
