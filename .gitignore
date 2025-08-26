@@ -1,0 +1,47 @@
+# Private configurations
+.zshrc.private
+.bashrc.private
+.env.private
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local test files
+test/
+local/
+
+# Compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Node modules (if any)
+node_modules/
+
+# Local bin directories that might contain sensitive scripts
+.bin/local/
+.my_bin/local/
